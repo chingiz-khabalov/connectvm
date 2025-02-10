@@ -10,3 +10,4 @@ mkdir -p ~/.config/connectvm
 cp ./bash_completion ~/.config/connectvm/completion
 chmod 744 ~/.config/connectvm/completion
 echo "source ~/.config/connectvm/completion" >> ~/.bashrc
+source ~/.config/connectvm/completion

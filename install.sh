@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if ! echo "$PATH" | grep -q "~/.local/bim"; then
+    export PATH="$PATH:~/.local/bin"
+fi
+
 mkdir -p ~/.local/bin
 cp ./main.py ~/.local/bin/connectvm
 mkdir -p ~/.config/connectvm

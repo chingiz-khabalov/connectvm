@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if ! echo "$PATH" | grep -q "~/.local/bim"; then
+if ! echo "$PATH" | grep -q "~/.local/bin"; then
     export PATH="$PATH:~/.local/bin"
 fi
 

@@ -1,0 +1,25 @@
+#!/bin/bash
+
+_connectvm_script_completion() {
+    local cur prev
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+    if [[ ${prev} == "connectvm" ]]; then
+        local script_output
+        script_output=$(connectvm completion_list)
+        COMPREPLY=( $(compgen -W "${script_output}" -- "${cur}") )
+        return 0
+    fi
+    words="connect edit delete clone"
+    if [[ $words == *$prev* ]]; then
+        local script_output
+        script_output=$(connectvm names)
+        COMPREPLY=( $(compgen -W "${script_output}" -- "${cur}") )
+        return 0
+    fi
+
+}
+
+complete -F _connectvm_script_completion connectvm

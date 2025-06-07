@@ -11,7 +11,7 @@ CONFIG_FOLDER = os.path.expanduser(CONFIG_FOLDER)
 ADDRESSES_PATH = os.path.join(CONFIG_FOLDER, "addresses")
 
 
-def connect(name: str, user: Optional[str] = None, port: Optional[int] = None):
+def attach(name: str, user: Optional[str] = None, port: Optional[int] = None):
     address = get_addresses()[name]
     if user is None:
         user = address[0]
@@ -87,7 +87,7 @@ def ask_address(defaults: dict = None) -> list:
     success = False
     port = str()
     while not success:
-        port = input(f"Port (blank for {defaults.setdefault('port', '22')}):")
+        port = input(f"Port (blank for {defaults.setdefault('port', '22')}):\n")
         if not is_decimal(port):
             print("Invalid non numeric port, try again")
         else:
@@ -134,7 +134,7 @@ def main():
         return
 
     elif command == "completion_list":
-        print(" ".join(["clone", "names", "list", "set", "delete", "connect", "edit"]))
+        print(" ".join(["clone", "names", "list", "set", "delete", "attach", "edit"]))
         return
 
     elif command == "names":
@@ -173,9 +173,9 @@ def main():
         edit_name(name)
         return
 
-    elif command == "connect":
+    elif command == "attach":
         if len(arguments) == 3:
-            connect(name)
+            attach(name)
             return
 
         else:
@@ -185,7 +185,7 @@ def main():
                 return
 
             port = int(arguments[2])
-            connect(arguments[1], port=port)
+            attach(arguments[1], port=port)
             return
 
     else:

@@ -12,7 +12,7 @@ _connectvm_script_completion() {
         COMPREPLY=( $(compgen -W "${script_output}" -- "${cur}") )
         return 0
     fi
-    words="connect edit delete clone"
+    words="attach edit delete clone"
     if [[ $words == *$prev* ]]; then
         local script_output
         script_output=$(connectvm names)
